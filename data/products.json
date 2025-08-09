@@ -1,0 +1,412 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+    "title": "Hydrating Facial Serum",
+    "description": "Lightweight serum with hyaluronic acid for deep hydration and plumping effect.",
+    "price": {
+      "base": 24.99,
+      "variants": [
+        { "size": "30ml", "color": "Clear", "price": 24.99 },
+        { "size": "50ml", "color": "Clear", "price": 34.99 }
+      ]
+    },
+    "discount": 15,
+    "sizes": ["30ml", "50ml"],
+    "category_name": "Skincare",
+    "category_slug": "skincare",
+    "img_url": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&auto=format&fit=crop",
+    "colors": ["Clear"],
+    "avg_rating": 4.7,
+    "rating_count": 215,
+    "total_sold": 840,
+    "is_free_delivery": true
+  },
+  {
+    "id": "b2c3d4e5-f6g7-8h9i-0j1k-l2m3n4o5p6q7",
+    "title": "Matte Liquid Lipstick",
+    "description": "Long-lasting, smudge-proof lipstick with a velvety matte finish.",
+    "price": {
+      "base": 12.99,
+      "variants": [
+        { "size": "Standard", "color": "Ruby Red", "price": 12.99 },
+        { "size": "Standard", "color": "Nude Pink", "price": 12.99 },
+        { "size": "Mini", "color": "Ruby Red", "price": 8.99 }
+      ]
+    },
+    "discount": 10,
+    "sizes": ["Standard", "Mini"],
+    "category_name": "Makeup",
+    "category_slug": "makeup",
+    "img_url": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop",
+    "colors": ["Ruby Red", "Nude Pink"],
+    "avg_rating": 4.5,
+    "rating_count": 178,
+    "total_sold": 620,
+    "is_free_delivery": false
+  },
+  {
+    "id": "c3d4e5f6-g7h8-9i0j-1k2l-m3n4o5p6q7r8",
+    "title": "Volumizing Mascara",
+    "description": "Lengthens and volumizes lashes without clumping.",
+    "price": {
+      "base": 18.5,
+      "variants": [
+        { "size": "Standard", "color": "Black", "price": 18.5 },
+        { "size": "Waterproof", "color": "Black", "price": 21.99 }
+      ]
+    },
+    "discount": 0,
+    "sizes": ["Standard", "Waterproof"],
+    "category_name": "Makeup",
+    "category_slug": "makeup",
+    "img_url": "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=500&auto=format&fit=crop",
+    "colors": ["Black"],
+    "avg_rating": 4.3,
+    "rating_count": 312,
+    "total_sold": 1100,
+    "is_free_delivery": true
+  },
+  {
+    "id": "d4e5f6g7-h8i9-0j1k-2l3m-n4o5p6q7r8s9",
+    "title": "Detoxifying Clay Mask",
+    "description": "Deep-cleansing mask with bentonite clay to purify pores.",
+    "price": {
+      "base": 22.0,
+      "variants": [
+        { "size": "100g", "color": "Green", "price": 22.0 },
+        { "size": "200g", "color": "Green", "price": 35.0 }
+      ]
+    },
+    "discount": 20,
+    "sizes": ["100g", "200g"],
+    "category_name": "Skincare",
+    "category_slug": "skincare",
+    "img_url": "https://images.unsplash.com/photo-1556228579-15a009b6cb1e?w=500&auto=format&fit=crop",
+    "colors": ["Green"],
+    "avg_rating": 4.8,
+    "rating_count": 156,
+    "total_sold": 720,
+    "is_free_delivery": true
+  },
+  {
+    "id": "e5f6g7h8-i9j0-1k2l-3m4n-o5p6q7r8s9t0",
+    "title": "Silk Hair Scrunchie",
+    "description": "Gentle on hair, reduces breakage and frizz.",
+    "price": {
+      "base": 9.99,
+      "variants": [
+        { "size": "One Size", "color": "Blush Pink", "price": 9.99 },
+        { "size": "One Size", "color": "Midnight Black", "price": 9.99 }
+      ]
+    },
+    "discount": 5,
+    "sizes": ["One Size"],
+    "category_name": "Haircare",
+    "category_slug": "haircare",
+    "img_url": "https://images.unsplash.com/photo-1607602132700-0681206a2747?w=500&auto=format&fit=crop",
+    "colors": ["Blush Pink", "Midnight Black"],
+    "avg_rating": 4.6,
+    "rating_count": 89,
+    "total_sold": 430,
+    "is_free_delivery": false
+  },
+  {
+    "id": "f6g7h8i9-j0k1-2l3m-4n5o-p6q7r8s9t0u1",
+    "title": "Vitamin C Brightening Cream",
+    "description": "Anti-aging day cream with 20% vitamin C for radiant glow.",
+    "price": {
+      "base": 32.99,
+      "variants": [
+        { "size": "50ml", "color": "White", "price": 32.99 },
+        { "size": "100ml", "color": "White", "price": 49.99 }
+      ]
+    },
+    "discount": 10,
+    "sizes": ["50ml", "100ml"],
+    "category_name": "Skincare",
+    "category_slug": "skincare",
+    "img_url": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=500&auto=format&fit=crop",
+    "colors": ["White"],
+    "avg_rating": 4.8,
+    "rating_count": 342,
+    "total_sold": 1250,
+    "is_free_delivery": true
+  },
+  {
+    "id": "g7h8i9j0-k1l2-3m4n-5o6p-q7r8s9t0u1v2",
+    "title": "Eyeshadow Palette - Warm Neutrals",
+    "description": "12 highly pigmented shades for day-to-night looks.",
+    "price": {
+      "base": 28.5,
+      "variants": [
+        { "size": "Standard", "color": "Warm Neutrals", "price": 28.5 },
+        { "size": "Mini", "color": "Warm Neutrals", "price": 18.99 }
+      ]
+    },
+    "discount": 15,
+    "sizes": ["Standard", "Mini"],
+    "category_name": "Makeup",
+    "category_slug": "makeup",
+    "img_url": "https://images.unsplash.com/photo-1625772452860-1ca7d8a65c9d?w=500&auto=format&fit=crop",
+    "colors": ["Warm Neutrals"],
+    "avg_rating": 4.6,
+    "rating_count": 278,
+    "total_sold": 890,
+    "is_free_delivery": false
+  },
+  {
+    "id": "h8i9j0k1-l2m3-4n5o-6p7q-r8s9t0u1v2w3",
+    "title": "Coconut Hair Oil",
+    "description": "Cold-pressed oil for deep conditioning and shine.",
+    "price": {
+      "base": 14.99,
+      "variants": [
+        { "size": "100ml", "color": "Clear", "price": 14.99 },
+        { "size": "250ml", "color": "Clear", "price": 24.99 }
+      ]
+    },
+    "discount": 0,
+    "sizes": ["100ml", "250ml"],
+    "category_name": "Haircare",
+    "category_slug": "haircare",
+    "img_url": "https://images.unsplash.com/photo-1607602132700-0681206a2747?w=500&auto=format&fit=crop",
+    "colors": ["Clear"],
+    "avg_rating": 4.4,
+    "rating_count": 156,
+    "total_sold": 680,
+    "is_free_delivery": true
+  },
+  {
+    "id": "i9j0k1l2-m3n4-5o6p-7q8r-s9t0u1v2w3x4",
+    "title": "Rose Quartz Facial Roller",
+    "description": "Cooling stone roller to reduce puffiness and boost circulation.",
+    "price": {
+      "base": 19.99,
+      "variants": [
+        { "size": "Standard", "color": "Pink", "price": 19.99 },
+        { "size": "Deluxe", "color": "Pink", "price": 29.99 }
+      ]
+    },
+    "discount": 20,
+    "sizes": ["Standard", "Deluxe"],
+    "category_name": "Skincare Tools",
+    "category_slug": "skincare-tools",
+    "img_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&auto=format&fit=crop",
+    "colors": ["Pink"],
+    "avg_rating": 4.7,
+    "rating_count": 198,
+    "total_sold": 540,
+    "is_free_delivery": true
+  },
+  {
+    "id": "j0k1l2m3-n4o5-6p7q-8r9s-t0u1v2w3x4y5",
+    "title": "Satin Pillowcase Set",
+    "description": "Prevents hair breakage and reduces skin wrinkles.",
+    "price": {
+      "base": 29.99,
+      "variants": [
+        { "size": "Standard", "color": "Ivory", "price": 29.99 },
+        { "size": "Standard", "color": "Charcoal", "price": 29.99 },
+        { "size": "King", "color": "Ivory", "price": 39.99 }
+      ]
+    },
+    "discount": 10,
+    "sizes": ["Standard", "King"],
+    "category_name": "Beauty Accessories",
+    "category_slug": "beauty-accessories",
+    "img_url": "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=500&auto=format&fit=crop",
+    "colors": ["Ivory", "Charcoal"],
+    "avg_rating": 4.9,
+    "rating_count": 421,
+    "total_sold": 2100,
+    "is_free_delivery": true
+  },
+  {
+    "id": "k1l2m3n4-o5p6-7q8r-9s0t-u1v2w3x4y5z6",
+    "title": "Bamboo Makeup Brush Set",
+    "description": "8-piece vegan brushes for flawless application.",
+    "price": {
+      "base": 34.99,
+      "variants": [
+        { "size": "8-piece", "color": "Natural", "price": 34.99 },
+        { "size": "5-piece", "color": "Natural", "price": 24.99 }
+      ]
+    },
+    "discount": 25,
+    "sizes": ["5-piece", "8-piece"],
+    "category_name": "Makeup Tools",
+    "category_slug": "makeup-tools",
+    "img_url": "https://images.unsplash.com/photo-1617870952347-1f0f0a82377f?w=500&auto=format&fit=crop",
+    "colors": ["Natural"],
+    "avg_rating": 4.8,
+    "rating_count": 387,
+    "total_sold": 1560,
+    "is_free_delivery": true
+  },
+  {
+    "id": "l2m3n4o5-p6q7-8r9s-0t1u-v2w3x4y5z6a7",
+    "title": "Charcoal Teeth Whitening Kit",
+    "description": "Natural whitening powder with activated charcoal.",
+    "price": {
+      "base": 22.5,
+      "variants": [
+        { "size": "30g", "color": "Black", "price": 22.5 },
+        { "size": "60g", "color": "Black", "price": 35.0 }
+      ]
+    },
+    "discount": 15,
+    "sizes": ["30g", "60g"],
+    "category_name": "Oral Care",
+    "category_slug": "oral-care",
+    "img_url": "https://images.unsplash.com/photo-1583945498968-69c2dbc1c41e?w=500&auto=format&fit=crop",
+    "colors": ["Black"],
+    "avg_rating": 4.3,
+    "rating_count": 215,
+    "total_sold": 780,
+    "is_free_delivery": false
+  },
+  {
+    "id": "m1n2o3p4-q5r6-7s8t-9u0v-w1x2y3z4a5b6",
+    "title": "Wrap Midi Dress",
+    "description": "Flattering wrap dress with adjustable waist tie, perfect for day to night.",
+    "price": {
+      "base": 59.99,
+      "variants": [
+        { "size": "S", "color": "Navy", "price": 59.99 },
+        { "size": "M", "color": "Navy", "price": 59.99 },
+        { "size": "L", "color": "Navy", "price": 59.99 },
+        { "size": "S", "color": "Burgundy", "price": 64.99 }
+      ]
+    },
+    "discount": 20,
+    "sizes": ["S", "M", "L"],
+    "category_name": "Dresses",
+    "category_slug": "dresses",
+    "img_url": "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=500&auto=format&fit=crop",
+    "colors": ["Navy", "Burgundy"],
+    "avg_rating": 4.7,
+    "rating_count": 142,
+    "total_sold": 430,
+    "is_free_delivery": true
+  },
+  {
+    "id": "n2o3p4q5-r6s7-8t9u-0v1w-x2y3z4a5b6c7",
+    "title": "High-Waisted Skinny Jeans",
+    "description": "Stretch denim with sculpting fit and distressed details.",
+    "price": {
+      "base": 49.99,
+      "variants": [
+        { "size": "26", "color": "Light Blue", "price": 49.99 },
+        { "size": "28", "color": "Light Blue", "price": 49.99 },
+        { "size": "30", "color": "Light Blue", "price": 49.99 },
+        { "size": "28", "color": "Black", "price": 54.99 }
+      ]
+    },
+    "discount": 15,
+    "sizes": ["26", "28", "30"],
+    "category_name": "Jeans",
+    "category_slug": "jeans",
+    "img_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop",
+    "colors": ["Light Blue", "Black"],
+    "avg_rating": 4.5,
+    "rating_count": 278,
+    "total_sold": 920,
+    "is_free_delivery": false
+  },
+  {
+    "id": "o3p4q5r6-s7t8-9u0v-1w2x-y3z4a5b6c7d8",
+    "title": "Cashmere Turtleneck Sweater",
+    "description": "Ultra-soft 100% cashmere for winter warmth.",
+    "price": {
+      "base": 129.99,
+      "variants": [
+        { "size": "XS", "color": "Cream", "price": 129.99 },
+        { "size": "S", "color": "Cream", "price": 129.99 },
+        { "size": "M", "color": "Cream", "price": 129.99 },
+        { "size": "S", "color": "Camel", "price": 139.99 }
+      ]
+    },
+    "discount": 10,
+    "sizes": ["XS", "S", "M"],
+    "category_name": "Sweaters",
+    "category_slug": "sweaters",
+    "img_url": "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=500&auto=format&fit=crop",
+    "colors": ["Cream", "Camel"],
+    "avg_rating": 4.9,
+    "rating_count": 89,
+    "total_sold": 310,
+    "is_free_delivery": true
+  },
+  {
+    "id": "p4q5r6s7-t8u9-0v1w-2x3y-z4a5b6c7d8e9",
+    "title": "Athleisure Leggings",
+    "description": "High-waisted leggings with pocket and squat-proof fabric.",
+    "price": {
+      "base": 34.99,
+      "variants": [
+        { "size": "S", "color": "Black", "price": 34.99 },
+        { "size": "M", "color": "Black", "price": 34.99 },
+        { "size": "L", "color": "Black", "price": 34.99 },
+        { "size": "M", "color": "Olive Green", "price": 39.99 }
+      ]
+    },
+    "discount": 0,
+    "sizes": ["S", "M", "L"],
+    "category_name": "Activewear",
+    "category_slug": "activewear",
+    "img_url": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop",
+    "colors": ["Black", "Olive Green"],
+    "avg_rating": 4.6,
+    "rating_count": 421,
+    "total_sold": 1800,
+    "is_free_delivery": true
+  },
+  {
+    "id": "q5r6s7t8-u9v0-1w2x-3y4z-a5b6c7d8e9f0",
+    "title": "Silk Blouse",
+    "description": "Button-down blouse with French cuffs for work or evenings.",
+    "price": {
+      "base": 79.99,
+      "variants": [
+        { "size": "XS", "color": "White", "price": 79.99 },
+        { "size": "S", "color": "White", "price": 79.99 },
+        { "size": "M", "color": "White", "price": 79.99 },
+        { "size": "S", "color": "Blush Pink", "price": 89.99 }
+      ]
+    },
+    "discount": 25,
+    "sizes": ["XS", "S", "M"],
+    "category_name": "Blouses",
+    "category_slug": "blouses",
+    "img_url": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500&auto=format&fit=crop",
+    "colors": ["White", "Blush Pink"],
+    "avg_rating": 4.8,
+    "rating_count": 156,
+    "total_sold": 670,
+    "is_free_delivery": false
+  },
+  {
+    "id": "r6s7t8u9-v0w1-2x3y-4z5a-b6c7d8e9f0g1",
+    "title": "Denim Jacket",
+    "description": "Classic oversized fit with raw hem details.",
+    "price": {
+      "base": 65.0,
+      "variants": [
+        { "size": "S", "color": "Medium Wash", "price": 65.0 },
+        { "size": "M", "color": "Medium Wash", "price": 65.0 },
+        { "size": "L", "color": "Medium Wash", "price": 65.0 },
+        { "size": "M", "color": "Black Wash", "price": 75.0 }
+      ]
+    },
+    "discount": 30,
+    "sizes": ["S", "M", "L"],
+    "category_name": "Jackets",
+    "category_slug": "jackets",
+    "img_url": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop",
+    "colors": ["Medium Wash", "Black Wash"],
+    "avg_rating": 4.4,
+    "rating_count": 203,
+    "total_sold": 580,
+    "is_free_delivery": true
+  }
+]

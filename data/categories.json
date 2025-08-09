@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+    "name": "Dresses",
+    "slug": "dresses",
+    "total_products": 124,
+    "img_url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&auto=format&fit=crop"
+  },
+  {
+    "id": "2b3c4d5e-6f7g-8h9i-0j1k-2l3m4n5o6p7q",
+    "name": "Tops & Blouses",
+    "slug": "tops-blouses",
+    "total_products": 89,
+    "img_url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&auto=format&fit=crop"
+  },
+  {
+    "id": "3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
+    "name": "Jeans",
+    "slug": "jeans",
+    "total_products": 67,
+    "img_url": "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=500&auto=format&fit=crop"
+  },
+  {
+    "id": "4d5e6f7g-8h9i-0j1k-2l3m-4n5o6p7q8r9s",
+    "name": "Activewear",
+    "slug": "activewear",
+    "total_products": 112,
+    "img_url": "https://images.unsplash.com/photo-1591348122449-02525d70379b?w=500&auto=format&fit=crop"
+  },
+  {
+    "id": "5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
+    "name": "Jackets & Coats",
+    "slug": "jackets-coats",
+    "total_products": 56,
+    "img_url": "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=500&auto=format&fit=crop"
+  },
+  {
+    "id": "6f7g8h9i-0j1k-2l3m-4n5o-6p7q8r9s0t1u",
+    "name": "Accessories",
+    "slug": "accessories",
+    "total_products": 203,
+    "img_url": "https://images.unsplash.com/photo-1591348122449-02525d70379b?w=500&auto=format&fit=crop"
+  },
+  {
+    "id": "7g8h9i0j-1k2l-3m4n-5o6p-7q8r9s0t1u2v",
+    "name": "Shoes",
+    "slug": "shoes",
+    "total_products": 78,
+    "img_url": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&auto=format&fit=crop"
+  },
+  {
+    "id": "8h9i0j1k-2l3m-4n5o-6p7q-8r9s0t1u2v3w",
+    "name": "Bags & Purses",
+    "slug": "bags-purses",
+    "total_products": 92,
+    "img_url": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=500&auto=format&fit=crop"
+  }
+]
