@@ -162,29 +162,47 @@ export default function page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-primary text-primary-foreground">
+      <section className="py-20 bg-primary/5 relative overflow-hidden">
+        {/* left image */}
+        <Image
+          draggable={false}
+          src={"/images/lipstick.png"}
+          width={300}
+          height={200}
+          alt="Lipstick"
+          className="absolute w-32 bottom-0 left-0 rotate-[30deg]"
+        />
+
+        {/* right image */}
+        <Image
+          draggable={false}
+          src={"/images/bag.png"}
+          width={300}
+          height={200}
+          alt="Bag"
+          className="absolute h-[80%] -right-28 top-1/2 -translate-y-1/2"
+          style={{ filter: "drop-shadow(#00000050 0px 12px 10px)" }}
+        />
+
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Ready to Start Shopping?
           </h2>
-          <p className="text-xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-muted-foreground">
             Join thousands of satisfied customers and discover amazing deals
             every day.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
-            >
-              Create Account
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-            >
-              Browse Products
-            </Button>
+            <Link href={"/register"}>
+              <Button size="lg" className="cursor-pointer">
+                Create Account
+              </Button>
+            </Link>
+            <Link href={"/shop"}>
+              <Button variant="outline" size="lg" className="cursor-pointer">
+                Browse Products
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
