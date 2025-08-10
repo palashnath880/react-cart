@@ -70,15 +70,9 @@ export default function Product(props: ProductProps) {
         </Button>
 
         {/* Quick add to cart */}
-        {/* <div className="absolute inset-x-2 bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Button className="w-full bg-primary/90 hover:bg-primary backdrop-blur-sm">
-            <ShoppingCart className="h-4 w-4 mr-2" />
-            Add to Cart
-          </Button>
-        </div> */}
       </div>
 
-      <CardContent className="!px-4">
+      <CardContent className="!px-4 flex-1">
         <div className="flex flex-col">
           {/* category */}
           <Link href={"/categories/"}>
@@ -107,9 +101,11 @@ export default function Product(props: ProductProps) {
             ({rating_count})
           </span>
         </div>
+      </CardContent>
 
+      <CardFooter className="!pb-4 items-center justify-between">
         {/* Price */}
-        <div className="flex items-center gap-2 mt-3">
+        <div className="flex items-center gap-2">
           <span className="text-2xl font-bold text-price">${price.base}</span>
           {discount > 0 && (
             <span className="text-lg text-muted-foreground line-through">
@@ -117,8 +113,16 @@ export default function Product(props: ProductProps) {
             </span>
           )}
         </div>
-      </CardContent>
-      <CardFooter></CardFooter>
+
+        {/* add to cart button */}
+        <Button
+          variant={"outline"}
+          size={"icon"}
+          className="cursor-pointer !rounded-full"
+        >
+          <ShoppingCart />
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
