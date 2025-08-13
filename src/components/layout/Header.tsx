@@ -1,11 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Badge, Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
+import { Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
+import { useCartStore } from "@/store/cart.store";
+import { Badge } from "../ui/badge";
 
 export default function Header() {
+  // cart store
+  const trigger = useCartStore((state) => state.trigger);
+  const cartItems = useCartStore((state) => state.items);
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Categories", path: "/categories" },
@@ -65,11 +73,19 @@ export default function Header() {
             </Button>
 
             {/* Cart */}
-            <Link href="/cart">
-              <Button variant="ghost" size="icon" className="cursor-pointer">
-                <ShoppingCart />
-              </Button>
-            </Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="cursor-pointer relative"
+              onClick={trigger}
+            >
+              <ShoppingCart />
+              {cartItems.length > 0 && (
+                <Badge className="!rounded-full !p-1.5 !aspect-square absolute -top-1 -right-1">
+                  {cartItems.length}
+                </Badge>
+              )}
+            </Button>
 
             {/* Account */}
             <Link href="/my-account">
