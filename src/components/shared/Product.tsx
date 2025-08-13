@@ -43,6 +43,8 @@ export default function Product(props: ProductProps) {
           src={img_url}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          placeholder="blur"
+          blurDataURL="/images/color-logo.png"
         />
 
         {/* Badges */}
