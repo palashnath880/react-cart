@@ -68,9 +68,11 @@ export default function Header() {
             </Button>
 
             {/* Wishlist */}
-            <Button variant="ghost" size="icon" className="cursor-pointer">
-              <Heart />
-            </Button>
+            <Link href={"/wishlist"}>
+              <Button variant="ghost" size="icon" className="cursor-pointer">
+                <Heart />
+              </Button>
+            </Link>
 
             {/* Cart */}
             <Button
