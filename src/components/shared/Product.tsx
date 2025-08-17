@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent, CardFooter } from "../ui/card";
 import Image from "next/image";
@@ -5,26 +7,15 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import Link from "next/link";
+import useWishList from "@/store/wishlist.store";
+import type { Product } from "@/interfaces/product";
+import { useCartStore } from "@/store/cart.store";
 
-type ProductProps = {
-  title: string;
-  description: string;
-  img_url: string;
-  discount: number;
-  price: {
-    base: number;
-    variants: { size: string; color: string; price: number }[];
-  };
-  category_name: string;
-  category_slug: string;
-  avg_rating: number;
-  rating_count: number;
-};
+type ProductProps = Product;
 
 export default function Product(props: ProductProps) {
   // props destructuring
   const {
-    description,
     img_url,
     title,
     discount,
@@ -32,7 +23,15 @@ export default function Product(props: ProductProps) {
     category_name,
     rating_count,
     avg_rating,
+    id,
   } = props;
+
+  // wishlist store
+  const { items, trigger } = useWishList((state) => state);
+  const isInWishList = items.find((i) => i === id);
+
+  // cart store
+  const cart = useCartStore((state) => state);
 
   return (
     <Card className="group cursor-pointer overflow-hidden border-border/50 hover:shadow-md transition-all duration-300 hover:-translate-y-1 !py-0 !gap-4">
@@ -49,29 +48,20 @@ export default function Product(props: ProductProps) {
 
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-col gap-1">
-          {/* {badge && (
-            <Badge
-              variant="destructive"
-              className="bg-sale text-sale-foreground"
-            >
-              {badge}
-            </Badge>
-          )} */}
           {discount > 0 && <Badge className="!text-sm">- {discount}%</Badge>}
         </div>
 
         {/* Wishlist button */}
         <Button
+          onClick={() => trigger(id)}
           variant="ghost"
           size="icon"
-          className={`absolute top-2 right-2 bg-background/80 backdrop-blur-sm hover:bg-background cursor-pointer ${
-            false ? "text-red-500" : "text-muted-foreground"
+          className={`absolute top-2 right-2 rounded-full bg-background/80 backdrop-blur-sm cursor-pointer ${
+            isInWishList ? "!text-primary" : "!text-muted-foreground"
           }`}
         >
-          <Heart className={`h-4 w-4 ${false ? "fill-current" : ""}`} />
+          <Heart className={`h-4 w-4 ${isInWishList ? "fill-current" : ""}`} />
         </Button>
-
-        {/* Quick add to cart */}
       </div>
 
       <CardContent className="!px-4 flex-1">
@@ -108,9 +98,9 @@ export default function Product(props: ProductProps) {
       <CardFooter className="!pb-4 items-center justify-between">
         {/* Price */}
         <div className="flex items-center gap-2">
-          <span className="text-2xl font-bold text-price">${price.base}</span>
+          <span className="text-xl font-bold text-price">${price.base}</span>
           {discount > 0 && (
-            <span className="text-lg text-muted-foreground line-through">
+            <span className="text-base text-muted-foreground line-through">
               ${price.base}
             </span>
           )}
@@ -121,6 +111,7 @@ export default function Product(props: ProductProps) {
           variant={"outline"}
           size={"icon"}
           className="cursor-pointer !rounded-full"
+          onClick={() => cart.add(id)}
         >
           <ShoppingCart />
         </Button>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/shared/CartDrawer";
+import { Toaster } from "@/components/ui/sonner";
 
 // Lora font
 const lora = Lora({
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Header />
         {children}
         <CartDrawer />
+        <Toaster richColors />
         <Footer />
       </body>
     </html>
