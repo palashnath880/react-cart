@@ -10,17 +10,79 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Form, FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { IRegisterInputs, registerFormSchema } from "@/schemas/register.schema";
 import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  // password show/hide state
+  const [isShow, setIsShow] = useState({
+    pwd: false,
+    conPwd: false,
+  });
+
+  // useRouter hook
+  const router = useRouter();
+
   // react-hook-form
-  const form = useForm();
+  const form = useForm<IRegisterInputs>({
+    resolver: zodResolver(registerFormSchema),
+    defaultValues: { isAgree: false },
+  });
+
+  // isAgree
+  const { isAgree } = useWatch({ control: form.control });
+
+  // register handler
+  const registerHandler = async (data: IRegisterInputs) => {
+    try {
+      const res = await fetch(`/api/register`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const resData = await res.json();
+
+      // if request is failed
+      if (!res.ok)
+        throw new Error(resData.message || "Sorry! Something went wrong.");
+
+      // reset form data
+      form.reset();
+
+      // success toast
+      toast.success("You’ve registered successfully!", {
+        description: "Please log in to continue.",
+      });
+
+      // replace register route
+      router.replace("/login");
+    } catch (err: unknown) {
+      form.setError("root", {
+        message:
+          err instanceof Error ? err.message : "Sorry! Something went wrong.",
+        type: "manual",
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10">
@@ -47,148 +109,205 @@ export default function Page() {
           </div>
 
           <Form {...form}>
-            <form className="space-y-4">
+            <form
+              className="space-y-4"
+              onSubmit={form.handleSubmit(registerHandler)}
+            >
               <div className="grid grid-cols-2 gap-4">
                 {/* first name */}
-                <FormItem className="space-y-1">
-                  <FormLabel htmlFor="firstName">First Name</FormLabel>
-                  <FormItem className="relative">
-                    <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <FormControl>
-                      <Input
-                        id="firstName"
-                        type="text"
-                        placeholder="John"
-                        className="pl-10"
-                        required
-                      />
-                    </FormControl>
-                  </FormItem>
-                </FormItem>
+                <FormField
+                  control={form.control}
+                  name="fname"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel htmlFor={field.name}>First Name</FormLabel>
+                      <FormItem className="relative">
+                        <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <FormControl>
+                          <Input
+                            {...field}
+                            id={field.name}
+                            placeholder="John"
+                            className={`pl-10`}
+                          />
+                        </FormControl>
+                      </FormItem>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 {/* last name */}
-                <FormItem className="space-y-1">
-                  <FormLabel htmlFor="lastName">Last Name</FormLabel>
-                  <FormItem className="relative">
-                    <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <FormControl>
-                      <Input
-                        id="lastName"
-                        type="text"
-                        placeholder="Doe"
-                        className="pl-10"
-                        required
-                      />
-                    </FormControl>
-                  </FormItem>
-                </FormItem>
+                <FormField
+                  control={form.control}
+                  name="lname"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel htmlFor={field.name}>Last Name</FormLabel>
+                      <FormItem className="relative">
+                        <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <FormControl>
+                          <Input
+                            {...field}
+                            id={field.name}
+                            placeholder="Doe"
+                            className={`pl-10`}
+                          />
+                        </FormControl>
+                      </FormItem>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
 
-              <FormItem className="space-y-2">
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <FormItem className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <FormControl>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="john.doe@example.com"
-                      className="pl-10"
-                      required
-                    />
-                  </FormControl>
-                </FormItem>
-              </FormItem>
+              {/* email field */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel htmlFor={field.name}>Email</FormLabel>
+                    <FormItem className="relative">
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id={field.name}
+                          placeholder="john.doe@example.com"
+                          className={`pl-10`}
+                        />
+                      </FormControl>
+                    </FormItem>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-              <FormItem className="space-y-2">
-                <FormLabel htmlFor="password">Password</FormLabel>
-                <FormItem className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <FormControl>
-                    <Input
-                      id="password"
-                      //   type={showPassword ? "text" : "password"}
-                      placeholder="Create a password"
-                      className="pl-10 pr-10"
-                      required
-                    />
-                  </FormControl>
-                  <button
-                    type="button"
-                    //   onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                  >
-                    {true ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
-                  </button>
-                </FormItem>
-              </FormItem>
+              {/* password field */}
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel htmlFor={field.name}>Password</FormLabel>
+                    <FormItem className="relative">
+                      <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id={field.name}
+                          type={isShow.pwd ? "text" : "password"}
+                          placeholder="Create a password"
+                          className="pl-10 pr-10"
+                        />
+                      </FormControl>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setIsShow((prev) => ({ ...prev, pwd: !prev.pwd }))
+                        }
+                        className="absolute right-3 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
+                      >
+                        {isShow.pwd ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
+                      </button>
+                    </FormItem>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-              <FormItem className="space-y-2">
-                <FormLabel htmlFor="confirmPassword">
-                  Confirm Password
-                </FormLabel>
-                <FormItem className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <FormControl>
-                    <Input
-                      id="confirmPassword"
-                      //   type={showConfirmPassword ? "text" : "password"}
-                      placeholder="Confirm your password"
-                      //   value={formData.confirmPassword}
-                      //   onChange={(e) =>
-                      //     handleInputChange("confirmPassword", e.target.value)
-                      //   }
-                      className="pl-10 pr-10"
-                      required
-                    />
-                  </FormControl>
-                  <button
-                    type="button"
-                    //   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                  >
-                    {true ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
-                  </button>
-                </FormItem>
-              </FormItem>
+              {/* confirm password field */}
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel htmlFor={field.name}>Confirm Password</FormLabel>
+                    <FormItem className="relative">
+                      <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id={field.name}
+                          type={isShow.conPwd ? "text" : "password"}
+                          placeholder="Confirm your password"
+                          className="pl-10 pr-10"
+                        />
+                      </FormControl>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setIsShow((prev) => ({
+                            ...prev,
+                            conPwd: !prev.conPwd,
+                          }))
+                        }
+                        className="absolute right-3 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
+                      >
+                        {isShow.conPwd ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
+                      </button>
+                    </FormItem>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-              <FormItem className="flex items-center space-x-2">
-                <FormControl>
-                  <Checkbox
-                    id="terms"
-                    // checked={formData.agreeToTerms}
-                    // onCheckedChange={(checked) =>
-                    //   handleInputChange("agreeToTerms", checked as boolean)
-                    // }
-                  />
-                </FormControl>
-                <FormLabel htmlFor="terms" className="text-sm">
-                  I agree to the{" "}
-                  <Link href="/terms" className="text-primary hover:underline">
-                    Terms of Service
-                  </Link>{" "}
-                  and{" "}
-                  <Link
-                    href="/privacy"
-                    className="text-primary hover:underline"
-                  >
-                    Privacy Policy
-                  </Link>
-                </FormLabel>
-              </FormItem>
+              {/* agree terms */}
+              <FormField
+                control={form.control}
+                name="isAgree"
+                render={({ field }) => (
+                  <FormItem className="flex items-center space-x-2">
+                    <FormControl>
+                      <Checkbox
+                        id={field.name}
+                        checked={field.value}
+                        onCheckedChange={(val) => field.onChange(val)}
+                      />
+                    </FormControl>
+                    <FormLabel
+                      htmlFor={field.name}
+                      className="text-sm cursor-pointer"
+                    >
+                      I agree to the{" "}
+                      <Link
+                        href="/terms"
+                        className="text-primary hover:underline"
+                      >
+                        Terms of Service
+                      </Link>{" "}
+                      and{" "}
+                      <Link
+                        href="/privacy"
+                        className="text-primary hover:underline"
+                      >
+                        Privacy Policy
+                      </Link>
+                    </FormLabel>
+                  </FormItem>
+                )}
+              />
+
+              {/* form root error */}
+              {form.formState.errors["root"] && (
+                <p className="text-center text-sm text-red-400">
+                  {form.formState.errors["root"].message}
+                </p>
+              )}
 
               <Button
                 type="submit"
                 className="w-full cursor-pointer"
-                //   disabled={!formData.agreeToTerms}
+                disabled={!isAgree || form.formState.isSubmitting}
               >
                 Create Account
               </Button>
