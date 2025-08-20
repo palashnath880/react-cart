@@ -51,7 +51,7 @@ export default function Page() {
   // register handler
   const registerHandler = async (data: IRegisterInputs) => {
     try {
-      const res = await fetch(`/api/register`, {
+      const res = await fetch(`/api/auth/register`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
