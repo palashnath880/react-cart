@@ -1,4 +1,4 @@
-import { supabaseClient } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/server";
 import { loginFormSchema } from "@/schemas/login.schema";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
@@ -6,6 +6,8 @@ import z from "zod";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+
+    const supabase = await createClient();
 
     // body validation with zod
     const { data, error } = await loginFormSchema.safeParseAsync(body);
@@ -19,7 +21,7 @@ export async function POST(req: NextRequest) {
     }
 
     // login user
-    const res = await supabaseClient.auth.signInWithPassword({
+    const res = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
     });
@@ -34,9 +36,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const redirectURL = new URL("/my-account", req.url);
-
-    return NextResponse.json({ message: "SUCCESS", redirectURL });
+    return NextResponse.json({
+      user: res.data.user,
+      session: res.data.session,
+    });
   } catch (err: unknown) {
     console.log(err);
     const message =

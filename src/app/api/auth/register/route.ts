@@ -1,4 +1,4 @@
-import { supabaseClient } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/server";
 import { registerFormSchema } from "@/schemas/register.schema";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
@@ -18,8 +18,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const supabase = await createClient();
+
     // create a user
-    const newUser = await supabaseClient.auth.signUp({
+    const newUser = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
       options: { data: { displayName: `${data.fname} ${data.lname}` } },

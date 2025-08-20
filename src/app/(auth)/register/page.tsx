@@ -70,7 +70,7 @@ export default function Page() {
 
       // success toast
       toast.success("You’ve registered successfully!", {
-        description: "Please log in to continue.",
+        description: "Please check your email to verify your account.",
       });
 
       // replace register route
