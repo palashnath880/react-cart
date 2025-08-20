@@ -9,16 +9,61 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Form, FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { ILoginInputs, loginFormSchema } from "@/schemas/login.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Page() {
-  const form = useForm();
+  // password hide/show state
+  const [isShow, setIsShow] = useState<boolean>(false);
+
+  // useRouter hook
+  const router = useRouter();
+
+  // react-hook-form
+  const form = useForm<ILoginInputs>({
+    resolver: zodResolver(loginFormSchema),
+  });
+
+  // login handler
+  const loginHandler = async (data: ILoginInputs) => {
+    try {
+      // fetch request
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const resData = await res.json();
+
+      // if request is failed
+      if (!res.ok) {
+        throw new Error(resData.message || "Sorry! Something went wrong.");
+      }
+
+      router.replace("/my-account"); // redirect to my-account page
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Sorry! Something went wrong.";
+      form.setError("root", { message, type: "manual" });
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center  px-4 py-10">
@@ -46,53 +91,67 @@ export default function Page() {
           </div>
 
           <Form {...form}>
-            <form className="space-y-4">
-              <FormItem className="space-y-1">
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <FormItem className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <FormControl>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email"
-                      //   value={email}
-                      //   onChange={(e) => setEmail(e.target.value)}
-                      className="pl-10"
-                      required
-                    />
-                  </FormControl>
-                </FormItem>
-              </FormItem>
+            <form
+              className="space-y-4"
+              onSubmit={form.handleSubmit(loginHandler)}
+            >
+              {/* email field */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="space-y-1">
+                    <FormLabel htmlFor={field.name}>Email</FormLabel>
+                    <FormItem className="relative">
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id={field.name}
+                          placeholder="Enter your email"
+                          className="pl-10"
+                        />
+                      </FormControl>
+                    </FormItem>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-              <FormItem className="space-y-1">
-                <FormLabel htmlFor="password">Password</FormLabel>
-                <FormItem className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <FormControl>
-                    <Input
-                      id="password"
-                      //   type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
-                      //   value={password}
-                      //   onChange={(e) => setPassword(e.target.value)}
-                      className="pl-10 pr-10"
-                      required
-                    />
-                  </FormControl>
-                  <button
-                    type="button"
-                    //   onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                  >
-                    {true ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
-                  </button>
-                </FormItem>
-              </FormItem>
+              {/* password field */}
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="space-y-1">
+                    <FormLabel htmlFor={field.name}>Password</FormLabel>
+                    <FormItem className="relative">
+                      <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id={field.name}
+                          type={isShow ? "text" : "password"}
+                          placeholder="Enter your password"
+                          className="pl-10 pr-10"
+                        />
+                      </FormControl>
+                      <button
+                        type="button"
+                        onClick={() => setIsShow(!isShow)}
+                        className="absolute right-3 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
+                      >
+                        {isShow ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
+                      </button>
+                    </FormItem>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <div className="flex items-center justify-between">
                 <Link
@@ -103,7 +162,18 @@ export default function Page() {
                 </Link>
               </div>
 
-              <Button type="submit" className="w-full cursor-pointer">
+              {/* form root error */}
+              {form.formState.errors["root"] && (
+                <p className="text-center text-sm text-red-400">
+                  {form.formState.errors["root"].message}
+                </p>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full cursor-pointer"
+                disabled={form.formState.isSubmitting}
+              >
                 Sign In
               </Button>
             </form>
