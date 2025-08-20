@@ -3,53 +3,126 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import React from "react";
+import {
+  IProfileUpdateInputs,
+  profileUpdateSchema,
+} from "@/schemas/profile.schema";
+import useAuth from "@/store/auth.store";
+import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Page() {
-  const form = useForm();
+  // auth store
+  const { loading, user, update } = useAuth((state) => state);
+
+  // react-hook-form
+  const form = useForm<IProfileUpdateInputs>({
+    resolver: zodResolver(profileUpdateSchema),
+  });
+
+  // update form values
+  useEffect(() => {
+    if (user) {
+      form.setValue("displayName", user.user_metadata?.displayName);
+      user?.email && form.setValue("email", user.email);
+      user?.phone && form.setValue("phone", user.phone);
+    }
+  }, [user]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <Card>
+      <Card
+        className={`relative ${
+          loading &&
+          'after:content-[""] after:w-full after:bg-white/30 after:h-full after:absolute after:top-0 after:left-0 after:backdrop-blur-xs'
+        }`}
+      >
         <CardHeader>
           <CardTitle>Personal Information</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form className="space-y-4">
-              <FormItem className="space-y-2">
-                <FormLabel htmlFor="firstName">First Name</FormLabel>
-                <FormControl>
-                  <Input id="firstName" defaultValue="John" />
-                </FormControl>
-              </FormItem>
-              <FormItem className="space-y-2">
-                <FormLabel htmlFor="lastName">Last Name</FormLabel>
-                <FormControl>
-                  <Input id="lastName" defaultValue="Doe" />
-                </FormControl>
-              </FormItem>
-              <FormItem className="space-y-2">
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <FormControl>
-                  <Input
-                    id="email"
-                    type="email"
-                    defaultValue="john.doe@example.com"
-                  />
-                </FormControl>
-              </FormItem>
-              <FormItem className="space-y-2">
-                <FormLabel htmlFor="phone">Phone</FormLabel>
-                <FormControl>
-                  <Input id="phone" defaultValue="+1 (555) 123-4567" />
-                </FormControl>
-              </FormItem>
-              <Button className="cursor-pointer">Save Changes</Button>
+            <form className="space-y-4" onSubmit={form.handleSubmit(update)}>
+              {/* display name */}
+              <FormField
+                control={form.control}
+                name="displayName"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel htmlFor={field.name}>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id={field.name}
+                        placeholder="Enter your name"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* email */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel htmlFor={field.name}>
+                      Email
+                      {/* verified badge */}
+                      {user?.email_confirmed_at && (
+                        <Badge className="rounded-full">Verified</Badge>
+                      )}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled
+                        {...field}
+                        id={field.name}
+                        placeholder="john.doe@example.com"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              {/* phone */}
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel htmlFor={field.name}>Phone</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id={field.name}
+                        placeholder="+1 (555) 123-4567"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                type="submit"
+                className="cursor-pointer"
+                disabled={form.formState.isSubmitting}
+              >
+                Save Changes
+              </Button>
             </form>
           </Form>
         </CardContent>
