@@ -63,14 +63,14 @@ export default function layout({ children }: { children: React.ReactNode }) {
             headerSkeleton
           ) : (
             <div className="flex items-center gap-4 mb-4">
-              <Avatar className="h-16 w-16">
+              <Avatar className="w-12 h-12 md:w-16 md:h-16">
                 <AvatarImage src="" />
                 <AvatarFallback>
                   <User2 />
                 </AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-2xl font-bold">
+                <h1 className="text-base sm:text-lg md:text-2xl font-bold">
                   Welcome back, {user?.user_metadata?.displayName}!
                 </h1>
                 <p className="text-muted-foreground text-sm">
@@ -96,7 +96,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
                     disabled={loading}
                   >
                     <Icon className="h-4 w-4" />
-                    {name}
+                    <span className="max-md:hidden">{name}</span>
                   </Button>
                 </Link>
               );
