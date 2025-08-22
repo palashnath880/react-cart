@@ -4,10 +4,19 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { create } from "zustand";
 
-type CartState = {
+// cart item
+type CartItem = {
+  product: Product;
+  quantity: number;
+  id: string;
+  user_id: string;
+};
+
+// cart store type
+type CartStoreState = {
   isLoading: boolean;
   isOpen: boolean;
-  items: { product: Product; quantity: number }[];
+  items: CartItem[];
   supabase: SupabaseClient;
   trigger: () => void;
   getAll: () => Promise<void>;
@@ -17,7 +26,7 @@ type CartState = {
 };
 
 // cart store
-export const useCartStore = create<CartState>((set, get) => ({
+export const useCartStore = create<CartStoreState>((set, get) => ({
   isLoading: true,
   isOpen: false,
   items: [],
@@ -26,44 +35,30 @@ export const useCartStore = create<CartState>((set, get) => ({
     set((prev) => ({ ...prev, isOpen: !prev.isOpen }));
   },
   async getAll() {
-    const { supabase } = get();
+    const res = await fetch(`/api/cart`);
+    const data = await res.json();
 
-    const { data } = await supabase.from("carts").select("*");
-
-    set((prev) => ({ ...prev, items: data, isLoading: false }));
+    if (!res.ok) {
+      // if request is failed
+      set((prev) => ({ ...prev, isLoading: false }));
+    } else {
+      set((prev) => ({ ...prev, items: data, isLoading: false }));
+    }
   },
   async add(id) {
-    const { supabase } = get();
+    const res = await fetch(`/api/cart`, {
+      method: "POST",
+      body: JSON.stringify({ product_id: id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
 
-    // first check product exists in the cart
-    const { data } = await supabase
-      .from("carts")
-      .select("id,quantity")
-      .eq("product_id", id)
-      .single();
-
-    // if product not found in the cart
-    if (!data) {
-      // insert in the cart
-      const newItem = await supabase.from("carts").insert({
-        product_id: id,
-        quantity: 1,
-      });
-      if (newItem.error) {
-        toast.error("Oops!", { description: "Please! Try Again" });
-      } else {
-        toast.success("Added to cart! 🛒");
-      }
-    }
-
-    // update the cart item by product id
-    const updateItem = await supabase
-      .from("carts")
-      .update({ quantity: data?.quantity + 1 })
-      .eq("id", data?.id);
-
-    if (updateItem.error) {
-      toast.error("Oops!", { description: "Please! Try Again" });
+    // if request is failed
+    if (!res.ok) {
+      const message = data.message || "Sorry! Something went wrong";
+      toast.error(message);
     } else {
       toast.success("Added to cart! 🛒");
     }
