@@ -5,11 +5,11 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Heart, ShoppingCart, Star } from "lucide-react";
+import { Heart, RotateCw, ShoppingCart, Star } from "lucide-react";
 import Link from "next/link";
 import useWishList from "@/store/wishlist.store";
 import type { Product } from "@/interfaces/product";
-import { useCartStore } from "@/store/cart.store";
+import useCart from "@/hooks/useCart";
 
 type ProductProps = Product;
 
@@ -30,8 +30,8 @@ export default function Product(props: ProductProps) {
   const { items, trigger } = useWishList((state) => state);
   const isInWishList = items.find((i) => i === id);
 
-  // cart store
-  const cart = useCartStore((state) => state);
+  // useCart hook
+  const { add, loading } = useCart();
 
   return (
     <Card className="group cursor-pointer overflow-hidden border-border/50 hover:shadow-md transition-all duration-300 hover:-translate-y-1 !py-0 !gap-4">
@@ -111,9 +111,10 @@ export default function Product(props: ProductProps) {
           variant={"outline"}
           size={"icon"}
           className="cursor-pointer !rounded-full"
-          onClick={() => cart.add(id)}
+          onClick={() => add(id)}
+          disabled={loading}
         >
-          <ShoppingCart />
+          {loading ? <RotateCw className="animate-spin" /> : <ShoppingCart />}
         </Button>
       </CardFooter>
     </Card>
