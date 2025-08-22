@@ -1,9 +1,15 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import useSubscribe from "@/hooks/useSubscribe";
 
 export default function Newsletter() {
+  // useSubscribe hook
+  const { inputRef, loading, subscribe } = useSubscribe();
+
   return (
     <Card
       className="border-primary/30 bg-repeat-x bg-contain"
@@ -23,8 +29,16 @@ export default function Newsletter() {
             type="email"
             placeholder="Enter your email"
             className="flex-1 border-primary/50"
+            ref={inputRef}
+            disabled={loading}
           />
-          <Button>Subscribe</Button>
+          <Button
+            className="cursor-pointer"
+            onClick={subscribe}
+            disabled={loading}
+          >
+            Subscribe
+          </Button>
         </div>
       </CardContent>
     </Card>
