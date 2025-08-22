@@ -8,6 +8,7 @@ import { Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart.store";
 import { Badge } from "../ui/badge";
+import SearchPopup from "../shared/SearchPopup";
 
 export default function Header() {
   // cart store
@@ -38,13 +39,7 @@ export default function Header() {
 
           {/* Search Bar - Hidden on mobile */}
           <div className="hidden md:flex flex-1 max-w-md mx-8">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Search products..."
-                className="pl-10 bg-muted/50 border-border/50 focus:bg-background"
-              />
-            </div>
+            <SearchPopup />
           </div>
 
           {/* Navigation - Hidden on mobile */}
