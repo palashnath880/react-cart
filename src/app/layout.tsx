@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Lora, Quicksand } from "next/font/google";
+import { Source_Serif_4, Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/shared/CartDrawer";
 import { Toaster } from "@/components/ui/sonner";
 
-// Lora font
-const lora = Lora({
-  variable: "--font-lora-serif",
+// source serif 4
+const source = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
 });
 
-// Quicksand
-const quicksand = Quicksand({
-  variable: "--font-quicksand-sans",
+// josefin
+const josefin = Josefin_Sans({
+  variable: "--font-josefin-sans",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lora.variable} ${quicksand.variable} antialiased`}>
+      <body className={`${josefin.variable} ${source.variable} antialiased`}>
         <Header />
         {children}
         <CartDrawer />
