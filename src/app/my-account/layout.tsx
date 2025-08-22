@@ -3,7 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import useAuth from "@/store/auth.store";
+import useAuthStore from "@/store/auth.store";
 import {
   CreditCard,
   LucideProps,
@@ -48,7 +48,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   // auth store
-  const { init: initAuth, loading, user } = useAuth((state) => state);
+  const { init: initAuth, loading, user } = useAuthStore((state) => state);
 
   useEffect(() => {
     initAuth();

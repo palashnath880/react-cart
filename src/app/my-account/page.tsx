@@ -17,14 +17,14 @@ import {
   IProfileUpdateInputs,
   profileUpdateSchema,
 } from "@/schemas/profile.schema";
-import useAuth from "@/store/auth.store";
+import useAuthStore from "@/store/auth.store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Page() {
   // auth store
-  const { loading, user, update } = useAuth((state) => state);
+  const { loading, user, update } = useAuthStore((state) => state);
 
   // react-hook-form
   const form = useForm<IProfileUpdateInputs>({

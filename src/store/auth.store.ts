@@ -22,7 +22,7 @@ type AuthStoreType = {
 };
 
 // use auth store
-const useAuth = create<AuthStoreType>((set, get) => ({
+const useAuthStore = create<AuthStoreType>((set, get) => ({
   loading: true,
   user: null,
   session: null,
@@ -89,4 +89,4 @@ const useAuth = create<AuthStoreType>((set, get) => ({
   },
 }));
 
-export default useAuth;
+export default useAuthStore;
