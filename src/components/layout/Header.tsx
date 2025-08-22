@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
@@ -14,6 +14,7 @@ export default function Header() {
   // cart store
   const trigger = useCartStore((state) => state.trigger);
   const cartItems = useCartStore((state) => state.items);
+  const getAll = useCartStore((state) => state.getAll);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -21,6 +22,11 @@ export default function Header() {
     { name: "Shop", path: "/shop" },
     { name: "Offers", path: "/offers" },
   ];
+
+  // use effect
+  useEffect(() => {
+    getAll();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
