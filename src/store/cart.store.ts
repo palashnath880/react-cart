@@ -61,6 +61,7 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
       toast.error(message);
     } else {
       toast.success("Added to cart! 🛒");
+      await this.getAll();
     }
   },
   async remove(id) {
