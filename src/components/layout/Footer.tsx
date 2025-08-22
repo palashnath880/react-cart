@@ -1,10 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import Image from "next/image";
+import useSubscribe from "@/hooks/useSubscribe";
 
 export default function Footer() {
+  // useSubscribe hook
+  const { subscribe, loading, inputRef } = useSubscribe();
+
   return (
     <footer className="border-t">
       <div className="container mx-auto px-5 py-12">
@@ -140,19 +146,26 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground">
               Subscribe for exclusive offers and updates
             </p>
-            <form className="flex space-x-2">
+            <div className="flex space-x-2">
               <Input
                 placeholder="Enter your email"
                 className="flex-1"
                 name="email"
+                ref={inputRef}
+                disabled={loading}
               />
-              <Button type="submit" className="cursor-pointer">
+              <Button
+                className="cursor-pointer"
+                onClick={subscribe}
+                disabled={loading}
+              >
                 Subscribe
               </Button>
-            </form>
+            </div>
           </div>
         </div>
 
+        {/* copyright area */}
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
           <p>
             &copy; {new Date().getFullYear()} ReactCart. All rights reserved.
