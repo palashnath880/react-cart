@@ -35,8 +35,8 @@ export default function Page() {
   useEffect(() => {
     if (user) {
       form.setValue("displayName", user.user_metadata?.displayName);
-      user?.email && form.setValue("email", user.email);
-      user?.phone && form.setValue("phone", user.phone);
+      user?.email && form?.setValue("email", user.email);
+      user?.phone && form?.setValue("phone", user.phone);
     }
   }, [user]);
 

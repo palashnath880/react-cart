@@ -11,7 +11,7 @@ export default function page() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {[].map((order) => (
+          {[].map((order: any) => (
             <div
               key={order.id}
               className="flex items-center justify-between p-4 border rounded-lg"

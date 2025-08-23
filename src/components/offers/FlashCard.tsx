@@ -4,44 +4,44 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Clock, Zap } from "lucide-react";
 
-const flashDeals = [
-  {
-    id: "1",
-    name: "Wireless Gaming Mouse",
-    price: 29.99,
-    originalPrice: 59.99,
-    image:
-      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop",
-    rating: 4.6,
-    reviews: 89,
-    badge: "Flash Sale",
-    soldPercentage: 85,
-  },
-  {
-    id: "2",
-    name: "Premium Coffee Maker",
-    price: 149.99,
-    originalPrice: 299.99,
-    image:
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
-    rating: 4.8,
-    reviews: 156,
-    badge: "50% Off",
-    soldPercentage: 92,
-  },
-  {
-    id: "3",
-    name: "Bluetooth Speaker",
-    price: 79.99,
-    originalPrice: 129.99,
-    image:
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop",
-    rating: 4.4,
-    reviews: 203,
-    badge: "Limited Time",
-    soldPercentage: 67,
-  },
-];
+// const flashDeals = [
+//   {
+//     id: "1",
+//     name: "Wireless Gaming Mouse",
+//     price: 29.99,
+//     originalPrice: 59.99,
+//     image:
+//       "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop",
+//     rating: 4.6,
+//     reviews: 89,
+//     badge: "Flash Sale",
+//     soldPercentage: 85,
+//   },
+//   {
+//     id: "2",
+//     name: "Premium Coffee Maker",
+//     price: 149.99,
+//     originalPrice: 299.99,
+//     image:
+//       "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
+//     rating: 4.8,
+//     reviews: 156,
+//     badge: "50% Off",
+//     soldPercentage: 92,
+//   },
+//   {
+//     id: "3",
+//     name: "Bluetooth Speaker",
+//     price: 79.99,
+//     originalPrice: 129.99,
+//     image:
+//       "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop",
+//     rating: 4.4,
+//     reviews: 203,
+//     badge: "Limited Time",
+//     soldPercentage: 67,
+//   },
+// ];
 
 export default function FlashCard() {
   const [timeLeft, setTimeLeft] = useState({

@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CreditCard, Edit, Plus, Trash2 } from "lucide-react";
@@ -15,7 +16,7 @@ export default function page() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {[].map((method) => (
+        {[].map((method: any) => (
           <Card key={method.id}>
             <CardContent className="p-4">
               <div className="flex justify-between items-start mb-2">

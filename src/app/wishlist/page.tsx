@@ -12,7 +12,7 @@ export default function page() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {[].map((item) => (
+            {[].map((item: any) => (
               <div
                 key={item.id}
                 className="flex items-center gap-4 p-4 border rounded-lg"

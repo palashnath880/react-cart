@@ -110,7 +110,7 @@ export default function CartDrawer() {
  * Cart Drawer Single Cart Item Component
  * @returns
  */
-export function CartItem({ id, product, quantity }: CartItemProps) {
+export function CartItem({ product, quantity }: CartItemProps) {
   return (
     <Card className="!py-3 !rounded-lg">
       <CardContent className="flex gap-3 items-start !px-3">

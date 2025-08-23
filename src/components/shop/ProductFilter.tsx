@@ -5,89 +5,89 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
 import { Slider } from "../ui/slider";
 import { X } from "lucide-react";
-import { Checkbox } from "../ui/checkbox";
+// import { Checkbox } from "../ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { Form, FormControl, FormItem, FormLabel } from "../ui/form";
 import { useForm } from "react-hook-form";
 
 // brands
-const brands = [
-  {
-    name: "Zara",
-    total: 25.3,
-    country: "Spain",
-  },
-  {
-    name: "H&M",
-    total: 22,
-    country: "Sweden",
-  },
-  {
-    name: "Gucci",
-    total: 12.7,
-    country: "Italy",
-  },
-  {
-    name: "Louis Vuitton",
-    total: 15.2,
-    country: "France",
-  },
-  {
-    name: "Chanel",
-    total: 13.1,
-    country: "France",
-  },
-  {
-    name: "Nike",
-    total: 44.5,
-    country: "USA",
-  },
-  {
-    name: "Adidas",
-    total: 23.6,
-    country: "Germany",
-  },
-  {
-    name: "Uniqlo",
-    total: 19.1,
-    country: "Japan",
-  },
-  {
-    name: "Prada",
-    total: 4.5,
-    country: "Italy",
-  },
-  {
-    name: "Dior",
-    total: 11.8,
-    country: "France",
-  },
-  {
-    name: "Forever 21",
-    total: 3.8,
-    country: "USA",
-  },
-  {
-    name: "ASOS",
-    total: 4.2,
-    country: "UK",
-  },
-  {
-    name: "Balenciaga",
-    total: 7.1,
-    country: "France",
-  },
-  {
-    name: "Victoria's Secret",
-    total: 7.3,
-    country: "USA",
-  },
-  {
-    name: "Mango",
-    total: 2.4,
-    country: "Spain",
-  },
-];
+// const brands = [
+//   {
+//     name: "Zara",
+//     total: 25.3,
+//     country: "Spain",
+//   },
+//   {
+//     name: "H&M",
+//     total: 22,
+//     country: "Sweden",
+//   },
+//   {
+//     name: "Gucci",
+//     total: 12.7,
+//     country: "Italy",
+//   },
+//   {
+//     name: "Louis Vuitton",
+//     total: 15.2,
+//     country: "France",
+//   },
+//   {
+//     name: "Chanel",
+//     total: 13.1,
+//     country: "France",
+//   },
+//   {
+//     name: "Nike",
+//     total: 44.5,
+//     country: "USA",
+//   },
+//   {
+//     name: "Adidas",
+//     total: 23.6,
+//     country: "Germany",
+//   },
+//   {
+//     name: "Uniqlo",
+//     total: 19.1,
+//     country: "Japan",
+//   },
+//   {
+//     name: "Prada",
+//     total: 4.5,
+//     country: "Italy",
+//   },
+//   {
+//     name: "Dior",
+//     total: 11.8,
+//     country: "France",
+//   },
+//   {
+//     name: "Forever 21",
+//     total: 3.8,
+//     country: "USA",
+//   },
+//   {
+//     name: "ASOS",
+//     total: 4.2,
+//     country: "UK",
+//   },
+//   {
+//     name: "Balenciaga",
+//     total: 7.1,
+//     country: "France",
+//   },
+//   {
+//     name: "Victoria's Secret",
+//     total: 7.3,
+//     country: "USA",
+//   },
+//   {
+//     name: "Mango",
+//     total: 2.4,
+//     country: "Spain",
+//   },
+// ];
 
 export default function ProductFilter() {
   const form = useForm();

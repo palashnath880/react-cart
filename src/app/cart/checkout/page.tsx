@@ -19,17 +19,12 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
   checkoutFormSchema,
   CheckoutInputs,
   ShippingMethod,
 } from "@/schemas/checkout.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, ArrowRight, MapPin, Truck } from "lucide-react";
+import { ArrowRight, MapPin, Truck } from "lucide-react";
 import dynamic from "next/dynamic";
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
@@ -80,9 +75,6 @@ export default function Page() {
   const checkoutHandler = async (data: CheckoutInputs) => {
     console.log(data);
   };
-
-  // set address
-  const setAddress = () => {};
 
   return (
     <div className="min-h-screen">

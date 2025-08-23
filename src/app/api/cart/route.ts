@@ -2,7 +2,6 @@ import { createClient } from "@/lib/supabase/server";
 import { addToCartSchema } from "@/schemas/cart.schema";
 import { NextRequest, NextResponse } from "next/server";
 import products from "../../../../data/products.json";
-import { id } from "zod/v4/locales";
 
 // POST route
 export async function POST(req: NextRequest) {

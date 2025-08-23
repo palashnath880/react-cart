@@ -16,7 +16,11 @@ const useWishList = create<WishListStore>((set, get) => ({
         const index = items.findIndex((i) => i === id);
         const newItems = [...items];
 
-        index >= 0 ? newItems.splice(index, 1) : newItems.push(id);
+        if (index >= 0) {
+          newItems.splice(index, 1);
+        } else {
+          newItems.push(id);
+        }
 
         set((prev) => ({ ...prev, items: newItems })); // update wishlist items
 

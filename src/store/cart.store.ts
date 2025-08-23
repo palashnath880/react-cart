@@ -91,5 +91,7 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
       await getAll();
     }
   },
-  async updateItem(id, quantity) {},
+  async updateItem(id, quantity) {
+    console.log(id, quantity);
+  },
 }));

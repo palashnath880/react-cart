@@ -180,7 +180,7 @@ export default function Page() {
           </Form>
 
           <div className="text-center text-sm">
-            Don't have an account?{" "}
+            {"Don't have an account? "}
             <Link href="/register" className="text-primary hover:underline">
               Register
             </Link>

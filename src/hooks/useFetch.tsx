@@ -23,7 +23,7 @@ export default function useFetch<T>(params: UseFetch) {
       method,
     });
     if (!res.ok) {
-      typeof error === "function" && error();
+      if (typeof error === "function") error();
       return;
     }
     setLoading(false);

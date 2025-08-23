@@ -28,7 +28,7 @@ export default function useSubscribe() {
     // if value is empty
     if (!value) return;
 
-    const { data, error } = await emailSchema.safeParseAsync(value);
+    const { error } = await emailSchema.safeParseAsync(value);
     if (error) {
       toast.error("Sorry! Invalid email address.");
       return;
@@ -41,7 +41,7 @@ export default function useSubscribe() {
       });
       setLoading(false);
       inputRef.current.value = "";
-    } catch (err: any) {
+    } catch {
       setLoading(false);
       toast.error("Oops! Something went wrong. Please try again.");
     }
