@@ -1,5 +1,8 @@
 "use client";
 
+const MapPicker = dynamic(() => import("@/components/checkout/MapPicker"), {
+  ssr: false,
+});
 import Divider from "@/components/shared/Divider";
 import MyBreadcrumb from "@/components/shared/MyBreadcrumb";
 import { Button } from "@/components/ui/button";
@@ -16,12 +19,18 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   checkoutFormSchema,
   CheckoutInputs,
   ShippingMethod,
 } from "@/schemas/checkout.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, ArrowRight, Truck } from "lucide-react";
+import { ArrowLeft, ArrowRight, MapPin, Truck } from "lucide-react";
+import dynamic from "next/dynamic";
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 
@@ -71,6 +80,9 @@ export default function Page() {
   const checkoutHandler = async (data: CheckoutInputs) => {
     console.log(data);
   };
+
+  // set address
+  const setAddress = () => {};
 
   return (
     <div className="min-h-screen">
@@ -220,12 +232,30 @@ export default function Page() {
                         name="address"
                         render={({ field }) => (
                           <FormItem className="space-y-1 col-span-full">
-                            <FormLabel
-                              className="text-gray-500"
-                              htmlFor={field.name}
-                            >
-                              Address
-                            </FormLabel>
+                            <div className="flex justify-between items-center">
+                              <FormLabel
+                                className="text-gray-500"
+                                htmlFor={field.name}
+                              >
+                                Address
+                              </FormLabel>
+                              <MapPicker
+                                onConfirm={({ address, name }) => {
+                                  form.setValue("address", name);
+                                  form.setValue("city", address.city);
+                                  form.setValue("state", address.state);
+                                  form.setValue("zipcode", address.postcode);
+                                }}
+                              >
+                                <button
+                                  type="button"
+                                  className="text-sm text-primary flex items-center gap-1 cursor-pointer underline hover:no-underline !outline-none"
+                                >
+                                  <MapPin className="w-4 h-4" />
+                                  Pick Address
+                                </button>
+                              </MapPicker>
+                            </div>
                             <FormControl>
                               <Input
                                 {...field}
@@ -237,6 +267,7 @@ export default function Page() {
                           </FormItem>
                         )}
                       />
+
                       <FormItem className="space-y-1 col-span-full">
                         <FormLabel
                           className="text-gray-500"
