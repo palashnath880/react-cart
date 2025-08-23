@@ -21,7 +21,7 @@ type CartStoreState = {
   trigger: () => void;
   getAll: () => Promise<void>;
   add: (id: string) => Promise<void>;
-  remove: (id: string) => Promise<void>;
+  remove: (id?: string) => Promise<void>;
   updateItem: (id: string, quantity: number) => Promise<void>;
 };
 
@@ -35,6 +35,8 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
     set((prev) => ({ ...prev, isOpen: !prev.isOpen }));
   },
   async getAll() {
+    set((prev) => ({ ...prev, isLoading: true }));
+
     const res = await fetch(`/api/cart`);
     const data = await res.json();
 
@@ -65,16 +67,28 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
     }
   },
   async remove(id) {
-    const { supabase } = get();
-    const deleteItem = await supabase
-      .from("carts")
-      .delete()
-      .eq("product_id", id);
+    const { getAll } = get();
 
-    if (deleteItem.error) {
-      toast.error("Oops!", { description: "Please! Try Again" });
+    // set loading to true
+    set((prev) => ({ ...prev, isLoading: true }));
+
+    // request url
+    const url = new URL(`${window.location.origin}/api/cart`);
+    if (id) url.searchParams.set("itemId", id);
+
+    // delete req
+    const res = await fetch(url.toString(), { method: "DELETE" });
+    const data = await res.json();
+
+    // if request is failed
+    if (!res.ok) {
+      const message =
+        data.message || "Sorry! Something went wrong. Please try again";
+      toast.error(message);
+      set((prev) => ({ ...prev, isLoading: false }));
     } else {
       toast.success("Deleted from cart!");
+      await getAll();
     }
   },
   async updateItem(id, quantity) {},
