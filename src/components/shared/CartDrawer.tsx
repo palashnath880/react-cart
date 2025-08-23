@@ -69,7 +69,7 @@ export default function CartDrawer() {
             <div className="flex gap-5">
               <Button asChild className="cursor-pointer w-full">
                 <Link
-                  href={"/checkout"}
+                  href={"/cart/checkout"}
                   className="flex-1/2"
                   onClick={() => trigger()}
                   aria-label="Checkout"
