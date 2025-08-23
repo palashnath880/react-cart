@@ -31,7 +31,9 @@ type CartItemProps = {
  */
 export default function CartDrawer() {
   // cart store
-  const { trigger, isOpen, items } = useCartStore((state) => state);
+  const { trigger, isOpen, items, remove, isLoading } = useCartStore(
+    (state) => state
+  );
 
   return (
     <Drawer open={isOpen} direction="right" onOpenChange={trigger}>
@@ -44,23 +46,45 @@ export default function CartDrawer() {
             </Badge>
           </DrawerTitle>
         </DrawerHeader>
-        <div className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-auto relative">
           <div className="flex flex-col gap-3 px-4 py-5">
             {items.map((item) => (
               <CartItem key={item.id} {...item} />
             ))}
           </div>
+
+          {/* loading */}
+          <div
+            className={`absolute top-0 left-0 w-full h-full bg-white/20 backdrop-blur-[1px] grid place-items-center duration-200 transition-all ${
+              isLoading ? "visible" : "invisible"
+            }`}
+          >
+            <div>
+              <ShoppingCart className="animate-pulse w-12 h-12" />
+            </div>
+          </div>
         </div>
         <DrawerFooter className="border-t !border-gray-300">
           <div className="flex flex-col gap-4">
             <div className="flex gap-5">
-              <Link href={"/checkout"} className="flex-1/2">
-                <Button className="cursor-pointer w-full">
+              <Button asChild className="cursor-pointer w-full">
+                <Link
+                  href={"/checkout"}
+                  className="flex-1/2"
+                  onClick={() => trigger()}
+                  aria-label="Checkout"
+                >
                   <ShoppingCart />
                   Checkout
-                </Button>
-              </Link>
-              <Button variant="outline" className="cursor-pointer flex-1/2">
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="cursor-pointer flex-1/2"
+                onClick={() => remove()}
+                disabled={items.length <= 0 || isLoading}
+                aria-label="Clear Cart"
+              >
                 <BrushCleaning />
                 Clear Cart
               </Button>
@@ -69,6 +93,8 @@ export default function CartDrawer() {
               variant="destructive"
               className="cursor-pointer"
               onClick={trigger}
+              disabled={isLoading}
+              aria-label="Cart Drawer Close"
             >
               <X />
               Close
