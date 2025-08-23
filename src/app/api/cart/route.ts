@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { addToCartSchema } from "@/schemas/cart.schema";
 import { NextRequest, NextResponse } from "next/server";
 import products from "../../../../data/products.json";
+import { id } from "zod/v4/locales";
 
 // POST route
 export async function POST(req: NextRequest) {
@@ -111,6 +112,35 @@ export async function GET(req: NextRequest) {
     });
 
     return NextResponse.json(cartProducts);
+  } catch (err: any) {
+    return NextResponse.json({ message: err.message }, { status: 500 });
+  }
+}
+
+// Delete route
+export async function DELETE(req: NextRequest) {
+  try {
+    const searchParams = req.nextUrl.searchParams;
+    const itemId = searchParams.get("itemId");
+
+    const ip = req.headers.get("x-forwarded-for");
+
+    // supabase client
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    const user_id = user ? user.id : ip;
+
+    // delete from supabase
+    const query = supabase.from("carts").delete().eq("user_id", user_id);
+
+    // if item id is provided
+    if (itemId) query.eq("id", itemId);
+
+    const { data } = await query;
+
+    return NextResponse.json({ data });
   } catch (err: any) {
     return NextResponse.json({ message: err.message }, { status: 500 });
   }
