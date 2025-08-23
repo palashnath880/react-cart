@@ -1,5 +1,14 @@
 "use client";
 
+import MyBreadcrumb from "@/components/shared/MyBreadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormItem, FormLabel } from "@/components/ui/form";
@@ -36,20 +45,15 @@ export default function Page() {
 
   return (
     <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Link href="/cart">
-            <Button variant="link" size="icon" className="cursor-pointer">
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-          </Link>
-          <div>
-            <h1 className="text-3xl font-bold">Checkout</h1>
-            <p className="text-muted-foreground">Complete your purchase</p>
-          </div>
-        </div>
-
+      <div className="container mx-auto px-4 py-8 flex flex-col gap-8">
+        {/* breadcrumb */}
+        <MyBreadcrumb
+          links={[
+            { name: "Home", path: "/" },
+            { name: "Cart", path: "/cart" },
+            { name: "Checkout" },
+          ]}
+        />
         {/* shipping form */}
         <Form {...form}>
           <form>
