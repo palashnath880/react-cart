@@ -48,7 +48,7 @@ export default function Product(props: ProductProps) {
 
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-col gap-1">
-          {discount > 0 && <Badge className="!text-sm">- {discount}%</Badge>}
+          {discount > 0 && <Badge className="!text-sm">{discount}% OFF</Badge>}
         </div>
 
         {/* Wishlist button */}
