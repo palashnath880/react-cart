@@ -54,7 +54,7 @@ export default function Header() {
               <Link
                 key={item.path}
                 href={item.path}
-                className="text-sm hover:text-primary duration-300"
+                className="hover:text-primary duration-300"
               >
                 {item.name}
               </Link>
