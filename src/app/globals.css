@@ -127,7 +127,7 @@
     @apply !text-base;
   }
   button {
-    @apply !cursor-pointer !text-base;
+    @apply !cursor-pointer !text-base !font-normal;
   }
 }
 
