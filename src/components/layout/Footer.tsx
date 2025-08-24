@@ -14,9 +14,9 @@ export default function Footer() {
   return (
     <footer className="border-t">
       <div className="container mx-auto px-5 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-7 gap-8">
           {/* Brand */}
-          <div className="max-xl:col-span-1 col-span-2">
+          <div className="max-xl:col-span-1 col-span-3">
             <div className="space-y-4 flex flex-col gap-3">
               <Link href="/">
                 <Image
@@ -143,7 +143,7 @@ export default function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="space-y-4">
+          <div className="max-xl:col-span-1 col-span-2 space-y-4">
             <h3 className="text-lg font-semibold">Newsletter</h3>
             <p className="text-muted-foreground">
               Subscribe for exclusive offers and updates
