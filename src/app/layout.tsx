@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   title: "ReactCart",
   description:
     "ReactCart – A sleek Next.js eCommerce app showcasing trendy ladies' fashion, beauty, and accessories. Built for my portfolio, this demo highlights fast performance, responsive design, and seamless checkout.",
+  icons: {
+    icon: "/images/color-logo.png",
+    shortcut: "/images/color-logo.png",
+    apple: "/images/color-logo.png",
+  },
 };
 
 export default function RootLayout({
