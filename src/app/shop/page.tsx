@@ -2,14 +2,19 @@ import ProductFilter from "@/components/shop/ProductFilter";
 import React, { Suspense } from "react";
 import ProductsGrid from "@/components/shop/ProductsGrid";
 import ProductsSkeleton from "@/components/shop/ProductsSkeleton";
+import { getAllCategories } from "@/lib/categories";
+import { getAllBrands } from "@/lib/brands";
 
-export default function page() {
+export default async function page() {
+  const categories = await getAllCategories();
+  const brands = await getAllBrands();
+
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
-          <ProductFilter />
+          <ProductFilter brands={brands} categories={categories} />
 
           {/* Products */}
           <div className="flex-1">
