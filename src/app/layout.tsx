@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
-import { Source_Serif_4, Josefin_Sans } from "next/font/google";
+import { Afacad_Flux } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/shared/CartDrawer";
 import { Toaster } from "@/components/ui/sonner";
 
-// source serif 4
-const source = Source_Serif_4({
-  variable: "--font-source-serif",
+// afacad flux
+const afacad = Afacad_Flux({
+  variable: "--font-afacad-flux",
   subsets: ["latin"],
-});
-
-// josefin
-const josefin = Josefin_Sans({
-  variable: "--font-josefin-sans",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -36,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${josefin.variable} ${source.variable} antialiased`}>
+      <body className={`${afacad.variable} antialiased`}>
         <Header />
         {children}
         <CartDrawer />
